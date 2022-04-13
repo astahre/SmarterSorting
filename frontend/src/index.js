@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import ProductList from "./pages/ProductList";
 import AddProduct from "./pages/AddProduct";
@@ -13,8 +12,8 @@ root.render(
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/ProductList' component={ProductList} />
-          <Route path='/AddProduct' component={AddProduct} />
+          <Route path='/productList' element={<ProductList/>} />
+          <Route path='/addProduct' element={<AddProduct/>} />
         </Routes>
       </Router>
 
@@ -22,9 +21,9 @@ root.render(
 );
 
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <React.StrictMode>
+//     {/*<App />*/}
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );

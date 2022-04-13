@@ -1,8 +1,13 @@
 import React, {useState} from 'react';
+import {type} from "@testing-library/user-event/dist/type";
+import {useNavigate} from "react-router";
 
 function AddProduct() {
 	const [productName , setProductName] = useState('');
 	const [ingredient , setIngredient] = useState('');
+	const [ingredients, setIngredients] = useState([]);
+
+	const navingate = useNavigate();
 
 
 	// function to update state of productName with
@@ -10,18 +15,35 @@ function AddProduct() {
 	const handleChange =(e)=>{
 	setProductName(e.target.value);
 	}
+
+	const handleAddIngredient =(e)=>{
+		setIngredients(ingredients.concat([ingredient]));
+		setIngredient('');
+
+		e.preventDefault();
+	}
 	// function to update state of ingredient with value
 	// enter by user in form
 	const handleIngredientChange =(e)=>{
-	setIngredient(e.target.value);
+		setIngredient(e.target.value);
+
 	}
+
 
 
 	const handleSubmit=(e)=>{
 
 
-		alert('A form was submitted with ProductName :"' + productName +
-		'" and Ingredient :"'+ingredient  + '"');
+		fetch('http://localhost:5000/product',{
+            method: "POST",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+            body: JSON.stringify({
+				name: productName,
+                ingredients: ingredients
+            })
+        }).then(()=>navingate('/productList'))
 	e.preventDefault();
 
 	}
@@ -33,7 +55,7 @@ return (
 		function will be called .*/}
 
 		<label >
-		ProductName:
+		Product Name:
 		</label><br/>
 		<input type="text" value={productName} required onChange={(e) =>
 		{handleChange(e)}} /><br/>
@@ -42,12 +64,13 @@ return (
 		<label >
 		Ingredient:
 		</label><br/>
-		<input type="text" value={ingredient} required onChange={(e) =>
+		<input type="text" value={ingredient} onChange={(e) =>
 		{handleIngredientChange(e)}} /><br/>
 			{ /*when user write in ingredient input box , handleIngredientChange()
 			function will be called. */}
 
-
+        <input type="submit" onClick={(e) =>
+		{handleAddIngredient(e)}} value="Add Ingredient"/>
 		<input type="submit" value="Submit"/>
 	</form>
 	</header>

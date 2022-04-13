@@ -38,7 +38,6 @@ class App extends React.Component{
         <div className="App">
           {this.state.products.map(product=> (
               <p>{
-              // Uncomment this when database is set
                 // product.productName
               }
                 }</p>
