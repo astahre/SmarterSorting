@@ -1,6 +1,4 @@
 import React from 'react'
-// import ReactDOM from 'react'
-import { Link } from "react-router-dom";
 
 
 class ProductList extends React.Component{
@@ -20,9 +18,11 @@ class ProductList extends React.Component{
 
     render() {
       return (
-        <div className="Test">
+        <div className="Information">
             {this.state.products.map(product=> (
-                <p>{(product.name)} {(JSON.stringify (product.ingredients))}</p>
+                <p>Product: {(product.name)}<br/> {product.ingredients.map(ingredient => (
+        <span>{(ingredient.ingredient)} </span>
+    ))}</p>
             ))}
         </div>
       );

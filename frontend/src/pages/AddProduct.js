@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {type} from "@testing-library/user-event/dist/type";
 import {useNavigate} from "react-router";
 
 function AddProduct() {
@@ -51,8 +50,7 @@ return (
 	<div className="AddProduct">
 	<header className="AddProduct-header">
 	<form onSubmit={(e) => {handleSubmit(e)}}>
-	{/*when user submit the form , handleSubmit()
-		function will be called .*/}
+
 
 		<label >
 		Product Name:
@@ -62,12 +60,10 @@ return (
 		{ /*when user write in productName input box , handleChange()
 			function will be called. */}
 		<label >
-		Ingredient:
+		Ingredient(s):
 		</label><br/>
 		<input type="text" value={ingredient} onChange={(e) =>
 		{handleIngredientChange(e)}} /><br/>
-			{ /*when user write in ingredient input box , handleIngredientChange()
-			function will be called. */}
 
         <input type="submit" onClick={(e) =>
 		{handleAddIngredient(e)}} value="Add Ingredient"/>
@@ -81,57 +77,3 @@ return (
 export default AddProduct;
 
 
-// import React from 'react'
-// import '../App.css';
-// import { Link } from "react-router-dom";
-//
-// class AddProduct extends React.Component{
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             products: [],
-//             newProduct: ""
-//         };
-//         this.addProduct = this.addProduct.bind(this);
-//         this.setNewProduct = this.setNewProduct.bind(this);
-//         // this.navigate = useNavigate();
-//     }
-//     // addProduct() {
-//     //     this.setState({
-//     //         products: this.state.products.concat([this.state.newProduct]),
-//     //         newProduct: ""});
-//     // }
-//
-//     setNewProduct(event) {
-//         this.setState({newProduct: event.target.value})
-//     }
-//
-//     addProduct() {
-//         fetch('http://localhost:5000/api/product',{
-//             method: "POST",
-//             body: JSON.stringify({
-//                 products: this.state.products
-//             })
-//         })
-//     }
-//
-//     render() {
-//       return (
-//            <div className="App">
-//       <header className="App-header">
-//         <div className="AddProduct">
-//             {this.state.products.map(product=> (
-//                 <p>{(product)}</p>
-//             ))}
-//             <input value={this.state.newProduct} onChange={this.setNewProduct}/>
-//             <button onClick={this.addProduct} disabled={this.state.newProduct === ""}>Add Product</button>
-//             <button onClick={() => this.addProduct()} disabled={this.state.products.length === 0}>Add Product</button>
-//             <Link to="/">Cancel</Link>
-//         </div>
-//       </header>
-//         </div>
-//       );
-//     }
-// }
-//
-// export default AddProduct;
